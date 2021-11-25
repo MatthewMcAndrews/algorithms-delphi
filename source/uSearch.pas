@@ -46,8 +46,28 @@ class function Search<T>.Binary(
   const Domain: TArray<T>;
   const Target: T;
   const Compare: TCompareFunc<T>): Integer;
+var
+  Left: Integer;
+  Middle: Integer;
+  Right: Integer;
+  Comparison: Integer;
 begin
-  Result := -1;
+  Left := Low(Domain);
+  Right := High(Domain);
+  while (Left <= Right) do begin
+    Middle := (Left + Right) div 2;
+    Comparison := Compare(Target, Domain[Middle]);
+    case Comparison of
+      -1: Left := Middle + 1;
+      0: Exit(Middle);
+      1: Right := Middle - 1;
+    else
+      raise Exception.CreateFmt(
+        'Invalid Comparison Result %i, Expected Comparison Domain (-1, 0, 1).',
+        [Comparison]);
+    end;
+  end;
+  Exit(-1);
 end;
 
 end.
