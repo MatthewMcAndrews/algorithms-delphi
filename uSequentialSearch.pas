@@ -19,7 +19,7 @@ begin
       Exit(i);
     end;
   end;
-  Result := -1;
+  Exit(-1);
 end;
 
 end.
