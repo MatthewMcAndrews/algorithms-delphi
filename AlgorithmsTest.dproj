@@ -82,7 +82,8 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="uSequentialSearchTest.pas"/>
-        <DCCReference Include="uSequentialSearch.pas"/>
+        <DCCReference Include="uSearch.pas"/>
+        <DCCReference Include="uBinarySearchTest.pas"/>
         <None Include=".gitignore"/>
         <None Include="LICENSE"/>
         <None Include="README.md"/>

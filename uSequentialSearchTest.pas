@@ -23,7 +23,7 @@ implementation
 
 uses
   System.SysUtils,
-  uSequentialSearch;
+  uSearch;
 
 { TSequentialSearchTest }
 

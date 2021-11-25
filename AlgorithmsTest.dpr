@@ -12,7 +12,8 @@ uses
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
   uSequentialSearchTest in 'uSequentialSearchTest.pas',
-  uSequentialSearch in 'uSequentialSearch.pas';
+  uSearch in 'uSearch.pas',
+  uBinarySearchTest in 'uBinarySearchTest.pas';
 
 var
   Runner: ITestRunner;
