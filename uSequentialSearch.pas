@@ -6,11 +6,14 @@ uses
   System.SysUtils;
 
 type
+  TEqualsFunc<T> = reference to function (
+    const Value1: T;
+    const Value2: T): Boolean;
   Search<T> = class
     class function Sequential(
       const Domain: TArray<T>;
       const Target: T;
-      const Equals: TFunc<T, T, Boolean>): Integer;
+      const Equals: TEqualsFunc<T>): Integer;
   end;
 
 implementation
@@ -20,7 +23,7 @@ implementation
 class function Search<T>.Sequential(
   const Domain: TArray<T>;
   const Target: T;
-  const Equals: TFunc<T, T, Boolean>): Integer;
+  const Equals: TEqualsFunc<T>): Integer;
 var
   i: Integer;
 begin
