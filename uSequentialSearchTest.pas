@@ -15,6 +15,8 @@ type
     procedure search_one_not_found;
     [Test]
     procedure search_one_found;
+    [Test]
+    procedure search_multiple_found;
   end;
 
 implementation
@@ -38,6 +40,11 @@ end;
 procedure TSequentialSearchTest.search_one_not_found;
 begin
   Assert.AreEqual(-1, Search<string>.Sequential([''], 'a', SameStr));
+end;
+
+procedure TSequentialSearchTest.search_multiple_found;
+begin
+  Assert.AreEqual(2, Search<string>.Sequential(['c', 'b', 'a'], 'a', SameStr));
 end;
 
 initialization
