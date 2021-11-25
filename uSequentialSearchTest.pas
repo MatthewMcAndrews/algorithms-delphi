@@ -10,11 +10,11 @@ type
   TSequentialSearchTest = class(TObject)
   public
     [Test]
-    procedure sort_empty;
+    procedure search_empty;
     [Test]
-    procedure sort_one_not_found;
+    procedure search_one_not_found;
     [Test]
-    procedure sort_one_found;
+    procedure search_one_found;
   end;
 
 implementation
@@ -25,17 +25,17 @@ uses
 
 { TSequentialSearchTest }
 
-procedure TSequentialSearchTest.sort_empty;
+procedure TSequentialSearchTest.search_empty;
 begin
   Assert.AreEqual(-1, Search<string>.Sequential([], '', SameStr));
 end;
 
-procedure TSequentialSearchTest.sort_one_found;
+procedure TSequentialSearchTest.search_one_found;
 begin
   Assert.AreEqual(0, Search<string>.Sequential(['a'], 'a', SameStr));
 end;
 
-procedure TSequentialSearchTest.sort_one_not_found;
+procedure TSequentialSearchTest.search_one_not_found;
 begin
   Assert.AreEqual(-1, Search<string>.Sequential([''], 'a', SameStr));
 end;
