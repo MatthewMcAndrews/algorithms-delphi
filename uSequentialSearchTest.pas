@@ -26,17 +26,17 @@ uses
 
 procedure TSequentialSearchTest.sort_empty;
 begin
-  Assert.AreEqual(-1, SequentialSort([], ''));
+  Assert.AreEqual(-1, SequentialSearch([], ''));
 end;
 
 procedure TSequentialSearchTest.sort_one_found;
 begin
-  Assert.AreEqual(0, SequentialSort(['a'], 'a'));
+  Assert.AreEqual(0, SequentialSearch(['a'], 'a'));
 end;
 
 procedure TSequentialSearchTest.sort_one_not_found;
 begin
-  Assert.AreEqual(-1, SequentialSort([''], 'a'));
+  Assert.AreEqual(-1, SequentialSearch([''], 'a'));
 end;
 
 initialization

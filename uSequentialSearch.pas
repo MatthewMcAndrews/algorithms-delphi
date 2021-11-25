@@ -2,13 +2,13 @@ unit uSequentialSearch;
 
 interface
 
-function SequentialSort(
+function SequentialSearch(
   const Domain: TArray<string>;
   const Target: string): Integer;
 
 implementation
 
-function SequentialSort(
+function SequentialSearch(
   const Domain: TArray<string>;
   const Target: string): Integer;
 var
