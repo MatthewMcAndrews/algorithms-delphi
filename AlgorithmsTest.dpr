@@ -15,46 +15,47 @@ uses
   uSequentialSearch in 'uSequentialSearch.pas';
 
 var
-  runner : ITestRunner;
-  results : IRunResults;
-  logger : ITestLogger;
-  nunitLogger : ITestLogger;
+  Runner: ITestRunner;
+  Results: IRunResults;
+  Logger: ITestLogger;
+  NUnitLogger: ITestLogger;
 begin
 {$IFDEF TESTINSIGHT}
   TestInsight.DUnitX.RunRegisteredTests;
-  exit;
+  Exit;
 {$ENDIF}
   try
     //Check command line options, will exit if invalid
     TDUnitX.CheckCommandLine;
     //Create the test runner
-    runner := TDUnitX.CreateRunner;
+    Runner := TDUnitX.CreateRunner;
     //Tell the runner to use RTTI to find Fixtures
-    runner.UseRTTI := True;
+    Runner.UseRTTI := True;
     //tell the runner how we will log things
     //Log to the console window
-    logger := TDUnitXConsoleLogger.Create(true);
-    runner.AddLogger(logger);
+    Logger := TDUnitXConsoleLogger.Create(true);
+    Runner.AddLogger(Logger);
     //Generate an NUnit compatible XML File
-    nunitLogger := TDUnitXXMLNUnitFileLogger.Create(TDUnitX.Options.XMLOutputFile);
-    runner.AddLogger(nunitLogger);
-    runner.FailsOnNoAsserts := False; //When true, Assertions must be made during tests;
+    NUnitLogger := TDUnitXXMLNUnitFileLogger.Create(TDUnitX.Options.XMLOutputFile);
+    Runner.AddLogger(NUnitLogger);
+    Runner.FailsOnNoAsserts := True;
 
     //Run tests
-    results := runner.Execute;
-    if not results.AllPassed then
+    Results := Runner.Execute;
+    if not Results.AllPassed then begin
       System.ExitCode := EXIT_ERRORS;
+    end;
 
     {$IFNDEF CI}
     //We don't want this happening when running under CI.
-    if TDUnitX.Options.ExitBehavior = TDUnitXExitBehavior.Pause then
-    begin
+    if TDUnitX.Options.ExitBehavior = TDUnitXExitBehavior.Pause then begin
       System.Write('Done.. press <Enter> key to quit.');
       System.Readln;
     end;
     {$ENDIF}
   except
-    on E: Exception do
+    on E: Exception do begin
       System.Writeln(E.ClassName, ': ', E.Message);
+    end;
   end;
 end.
