@@ -22,21 +22,28 @@ implementation
 uses
   uSequentialSearch;
 
+function StringEquals(
+  Str1: string;
+  Str2: string): Boolean;
+begin
+  Result := Str1 = Str2;
+end;
+
 { TSequentialSearchTest }
 
 procedure TSequentialSearchTest.sort_empty;
 begin
-  Assert.AreEqual(-1, SequentialSearch([], ''));
+  Assert.AreEqual(-1, Search<string>.Sequential([], '', StringEquals));
 end;
 
 procedure TSequentialSearchTest.sort_one_found;
 begin
-  Assert.AreEqual(0, SequentialSearch(['a'], 'a'));
+  Assert.AreEqual(0, Search<string>.Sequential(['a'], 'a', StringEquals));
 end;
 
 procedure TSequentialSearchTest.sort_one_not_found;
 begin
-  Assert.AreEqual(-1, SequentialSearch([''], 'a'));
+  Assert.AreEqual(-1, Search<string>.Sequential([''], 'a', StringEquals));
 end;
 
 initialization
